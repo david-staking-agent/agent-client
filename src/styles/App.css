@@ -1,0 +1,272 @@
+@font-face {
+  font-family: "Satoshi-Medium";
+  src: url("../assets/fonts/Satoshi-Medium.woff2") format("woff2"),
+    url("../assets/fonts/Satoshi-Medium.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi-Black";
+  src: url("../assets/fonts/Satoshi-Black.woff2") format("woff2"),
+    url("../assets/fonts/Satoshi-Black.woff") format("woff");
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+:root {
+  --color-primary: ;
+  --color-primary--light: ;
+  --color-primary--dark: ;
+
+  --color-secondary: ;
+  --color-secondary--light: ;
+  --color-secondary--dark: ;
+
+  --color-text--primary: #f5f5f5;
+  --color-text--secondary: #ededed;
+  --color-bg--primary: black;
+
+  --color-border: rgb(31, 31, 31);
+
+  --font-satoshi--regular: "Satoshi-Medium", sans-serif;
+  --font-satoshi--bold: "Satoshi-Black", sans-serif;
+
+  --font-size--regular: 16px;
+
+  --border-radius--regular: 10px;
+  --border-radius--round: 20px;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+}
+
+ul {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+}
+
+p {
+  line-height: 1.6;
+  margin: 0 0 15px;
+}
+
+a {
+  text-decoration: none !important;
+  transition: ease-in-out 0.3s;
+  display: inline-block;
+  color: var(--color-text--primary);
+}
+
+a:hover,
+a:active,
+a:focus {
+  transition: ease-in-out 0.3s;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  font-family: var(--font-satoshi--bold);
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 52px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 26px;
+}
+
+h4 {
+  font-size: 23px;
+}
+
+h5 {
+  font-size: 20px;
+}
+
+/*//////////////////////
+// Input
+//////////////////////*/
+
+label {
+  font-size: var(--font-size--regular);
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input {
+  -moz-appearance: textfield;
+  font-family: var(--font-satoshi--regular);
+  border: none;
+  width: 100%;
+}
+
+input:focus {
+  outline: none;
+}
+
+select {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: var(--font-size--regular);
+  font-family: var(--font-satoshi--regular);
+  background: inherit;
+}
+
+/*//////////////////////
+// Additional
+//////////////////////*/
+
+.app {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  color: var(--color-text--primary);
+  background: var(--color-bg--primary);
+  font-family: var(--font-satoshi--regular);
+}
+
+.bold {
+  font-family: var(--font-satoshi--bold);
+}
+
+.select--wrapper {
+  background-color: pink;
+  padding-right: 10px;
+  border-radius: 10px;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15vh 100px 5vh;
+  min-height: 80vh;
+  /* margin-top: 150px;
+  margin-bottom: 50px; */
+}
+
+.page-heading {
+  color: var(--color-text--primary);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.bold {
+  font-family: var(--font-satoshi--bold);
+}
+
+@media screen and (max-width: 700px) {
+  .main {
+    padding: 15vh 20px 5vh;
+  }
+
+  .page-heading {
+    font-size: 34px;
+  }
+}
+
+/*//////////////////////
+// Buttons
+//////////////////////*/
+
+button {
+  color: var(--color-text--primary);
+  background: var(--color-bg--primary);
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: var(--border-radius--regular);
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-size--regular);
+  font-family: var(--font-satoshi--bold);
+  background: var(--color-bg--primary);
+  color: var(--color-text--primary);
+  margin: 10px 0;
+}
+
+.btn:disabled,
+.btn:disabled,
+.btn--disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn--connect {
+  font-size: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  height: 45px;
+  transition: transform 0.3s ease;
+}
+
+.btn--primary {
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+.btn--execute {
+  color: rgb(105, 255, 105);
+  font-size: 18px;
+}
+
+.btn--connect:hover {
+  transform: scale(1.05);
+}
+
+.btn--primary:hover {
+  transform: scale(1.04);
+}
+
+@media screen and (max-width: 700px) {
+  .btn--connect {
+    padding: 8px 16px;
+    width: 50%;
+  }
+}

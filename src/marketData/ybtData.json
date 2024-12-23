@@ -1,0 +1,44 @@
+{
+  "0xe7903B1F75C534Dd8159b313d92cDCfbC62cB3Cd": {
+    "protocol": "Kelp",
+    "type": "ERC20",
+    "address": "0xe7903B1F75C534Dd8159b313d92cDCfbC62cB3Cd",
+    "name": "rsETHWrapper",
+    "symbol": "wrsETH",
+    "decimals": "18",
+    "holders": "7162",
+    "apy": "2.48%",
+    "apyChange24h": "-0.3086%",
+    "priceUsd": 3437.44,
+    "tvlUsd": 1620994.77,
+    "icon": "https://storage.googleapis.com/prod-pendle-bucket-a/images/uploads/e0976e38-d4d9-4f81-a2bb-68b7a7d10f54.svg"
+  },
+  "0x028227c4dd1e5419d11Bb6fa6e661920c519D4F5": {
+    "protocol": "Ether.fi",
+    "type": "ERC20",
+    "address": "0x028227c4dd1e5419d11Bb6fa6e661920c519D4F5",
+    "name": "Wrapped eETH",
+    "symbol": "weETH",
+    "decimals": "18",
+    "holders": "2924",
+    "apy": "4.14%",
+    "apyChange24h": "-1.8661%",
+    "priceUsd": 3523.75,
+    "tvlUsd": 168060.7,
+    "icon": "https://storage.googleapis.com/prod-pendle-bucket-a/images/uploads/7bbd6cc1-22e7-4077-a532-6ff7e7a08464.svg"
+  },
+  "0x2416092f143378750bb29b79eD961ab195CcEea5": {
+    "protocol": "Renzo",
+    "type": "ERC20",
+    "address": "0x2416092f143378750bb29b79eD961ab195CcEea5",
+    "name": "Renzo Restaked ETH",
+    "symbol": "ezETH",
+    "decimals": "18",
+    "holders": "21629",
+    "apy": "3.36%",
+    "apyChange24h": "25.4151%",
+    "priceUsd": 3417.75,
+    "tvlUsd": 8206720.22,
+    "icon": "https://storage.googleapis.com/prod-pendle-bucket-a/images/uploads/e2cc9dcf-84f7-4b8a-abae-93bedb89b0af.svg"
+  }
+}

@@ -1,0 +1,124 @@
+/*//////////////////////
+// Navbar
+//////////////////////*/
+
+.navbar {
+  width: 100%;
+  display: flex;
+  position: absolute;
+  top: 0;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  font-weight: 700;
+}
+
+.navbar .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar .logo__text {
+  font-family: var(--font-satoshi-bold);
+  font-size: 25px;
+  color: var(--color-text--primary);
+}
+
+.navbar .logo__img {
+  width: 70px;
+}
+
+.navbar__links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.navbar__links--bg {
+  background: var(--gradient-2);
+}
+
+.navbar__link {
+  cursor: pointer;
+  border: none;
+  padding: 10px 15px;
+  font-size: var(--font-size-regular);
+  font-family: var(--font-satoshi-regular);
+  color: #ffffffe6;
+  word-wrap: none;
+  border-radius: 5px;
+}
+
+.navbar__balance {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-satoshi-bold);
+  padding: 0 5px;
+  text-align: center;
+}
+
+.navbar__network {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 4px 4px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  width: 100px;
+  height: 45px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.navbar__network .logo {
+  width: 60%;
+  border-radius: 8px;
+}
+
+.navbar__link--selected {
+  cursor: pointer;
+  background: linear-gradient(
+    90deg,
+    var(--color-bg--primary),
+    var(--color-primary) 50%,
+    var(--color-bg--primary)
+  );
+  /* color: #ffffffe6; */
+}
+
+.navbar a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media screen and (max-width: 700px) {
+  .navbar {
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 10px 0;
+  }
+
+  .navbar__links {
+    width: 100%;
+  }
+
+  .navbar .logo__img {
+    width: 50px;
+  }
+
+  .navbar__network .logo {
+    width: 30px;
+    border-radius: 8px;
+  }
+
+  .navbar__network {
+    width: 70px;
+  }
+
+  .navbar .logo__text {
+    font-size: 21px;
+  }
+}

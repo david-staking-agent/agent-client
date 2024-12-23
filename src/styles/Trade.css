@@ -1,0 +1,70 @@
+.trades {
+  width: 100%;
+}
+
+.trade {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 10px;
+  width: 100%;
+
+  background: #0a0a0a;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius--regular);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.trade--past {
+  display: grid;
+  grid-template-columns: 35% 15% 20% 20% 10%;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px;
+  text-align: center;
+}
+
+.trade__icon {
+  width: 80px;
+  justify-self: center;
+}
+
+.trade--past .trade__icon {
+  width: 40px;
+  justify-self: flex-end;
+}
+
+.trade__tag {
+  margin-bottom: 20px;
+  align-self: last baseline;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+.tag--sell {
+  background-color: rgb(255, 87, 87);
+}
+
+.trade--past .trade__tag {
+  margin: 0;
+  align-self: center;
+}
+
+.trade--past .trade__apy {
+  font-size: 14px;
+}
+
+.trade__link {
+  margin-top: 20px;
+  color: rgb(83, 137, 255);
+}
+
+.trade--past .trade__link {
+  font-size: 14px;
+  margin: 0;
+}
