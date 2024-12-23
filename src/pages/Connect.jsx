@@ -25,7 +25,7 @@ const Connect = ({ setNavbarVisible }) => {
     <>
       <h1 className="page-heading">Hello, David here 👋</h1>
       <p style={{ textAlign: "center" }}>Connect your wallet to get the best suggestions.</p>
-      <ConnectWalletBtn className={"btn btn--connect"} />
+      <ConnectWalletBtn className={"btn btn--border"} />
     </>
   ) : (
     <>

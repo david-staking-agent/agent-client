@@ -57,7 +57,7 @@ const Navbar = ({ setSwitchingNetwork }) => {
         <ConnectWalletBtn
           setSwitchingNetwork={setSwitchingNetwork}
           networkOption={true}
-          className="btn btn--connect"
+          className="btn"
         />
       </div>
     </nav>
