@@ -40,7 +40,7 @@ const CompletedTrades = () => {
           <h1 className="page-heading">No Completed Trades</h1>
         )
       ) : (
-        <>Loading...</>
+        <h2 className="page-heading">Fetching ...</h2>
       )}
     </div>
   );

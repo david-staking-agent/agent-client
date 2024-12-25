@@ -1,5 +1,4 @@
 import ERC20 from "../web3Hooks/ERC20";
-import { parseUnits } from "./formatUnits";
 import { getQuote } from "../api/quote";
 
 const NATIVE = {
@@ -34,8 +33,8 @@ export const addTradeDetails = async (trades, address, chainId) => {
         action: trade.action,
         sellToken,
         buyToken,
+        amountSell: trade.amountParsedInSellToken,
         amountInUsd: trade.amountInUsd,
-        amountSell: parseUnits(trade.amountInSellToken, sellToken.decimals).toString(),
         atApy: trade.buyTokenApy,
       };
     })

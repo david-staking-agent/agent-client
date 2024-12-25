@@ -58,6 +58,13 @@ const RecommededTrades = () => {
           await sellToken.approve(spender, amountSell);
         }
 
+        const estimatedGas = await estimateGas(config, {
+          address,
+          to: transaction.to,
+          data: transaction.data,
+          value: transaction.value,
+        });
+
         const txHash = await sendTransaction(config, {
           address,
           to: transaction.to,
