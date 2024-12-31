@@ -20,8 +20,8 @@
 }
 
 .navbar .logo__text {
-  font-family: var(--font-satoshi-bold);
-  font-size: 25px;
+  font-family: var(--font-satoshi--bold);
+  font-size: 21px;
   color: var(--color-text--primary);
 }
 
@@ -96,9 +96,9 @@
 
 @media screen and (max-width: 700px) {
   .navbar {
-    flex-direction: column;
-    row-gap: 10px;
-    padding: 10px 0;
+    width: 100%;
+    justify-content: space-between;
+    padding: 20px;
   }
 
   .navbar__links {

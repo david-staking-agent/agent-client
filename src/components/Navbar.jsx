@@ -1,8 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import ConnectWalletBtn from "./ConnectWalletBtn";
-import spiralStakeLogo from "../assets/images/spiral-stake-logo.png";
 import "../styles/Navbar.css";
+import ConnectWalletBtn from "./ConnectWalletBtn";
 
 const Navbar = ({ setSwitchingNetwork }) => {
   const location = useLocation();
@@ -11,55 +10,13 @@ const Navbar = ({ setSwitchingNetwork }) => {
   return (
     <nav className="navbar">
       <Link to="/pools">
-        {/* <div className="logo">
-          <img className="logo__img" src={spiralStakeLogo} alt="" />
-          <span className="logo__text">Spiral Stake</span>
-        </div> */}
+        <div className="logo">
+          <img className="logo__img" src={"/logo/spiral-stake-logo.jpg"} alt="" />
+          <span className="logo__text">DAVID</span>
+        </div>
       </Link>
-      <div className="navbar__links navbar__links--bg">
-        {/* <Link to="/">
-          <button className={`navbar__link ${pathname === "/" && "navbar__link--selected"}`}>
-            Home
-          </button>
-        </Link> */}
-        {/* <Link target="blank" to="https://spiral-stake.gitbook.io/spiral-stake-docs">
-          <button className={`navbar__link `}>Learn</button>
-        </Link> */}
-        {/* <Link to="/pools">
-          <button
-            className={`navbar__link ${
-              pathname.endsWith("/pools") ? "navbar__link--selected" : ""
-            }`}
-          >
-            Pending
-          </button>
-        </Link>
-        <Link to="/pools/create">
-          <button
-            className={`navbar__link ${
-              pathname.endsWith("/pools/create") ? "navbar__link--selected" : ""
-            }`}
-          >
-            Completed
-          </button>
-        </Link> */}
-        {/* <Link to="/dashboard">
-          <button
-            className={`navbar__link ${
-              pathname.includes("/dashboard") ? "navbar__link--selected" : ""
-            }`}
-          >
-            Dashboard
-          </button>
-        </Link> */}
-      </div>
-      <div className="navbar__links">
-        <ConnectWalletBtn
-          setSwitchingNetwork={setSwitchingNetwork}
-          networkOption={true}
-          className="btn btn--connect"
-        />
-      </div>
+
+      <ConnectWalletBtn />
     </nav>
   );
 };

@@ -1,108 +1,27 @@
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import dropdownSvg from "../assets/images/dropdown.svg";
-import { chainConfig } from "../config/chainConfig";
-import { useChainId } from "wagmi";
+import { ConnectButton, useSiweAuth } from "thirdweb/react";
+import { thirdWebClient } from "../config/thirdweb";
+import { arbitrumSepolia } from "thirdweb/chains";
+import { getSupportedTokens } from "../config/supported";
 
-const ConnectWalletBtn = ({ className, networkOption, setSwitchingNetwork }) => {
-  const appChainId = useChainId();
-
+const ConnectWalletBtn = () => {
   return (
-    <ConnectButton.Custom>
-      {({
-        account,
-        chain,
-        openAccountModal,
-        openChainModal,
-        openConnectModal,
-        authenticationStatus,
-        mounted,
-      }) => {
-        // If your app doesn't use authentication, remove 'authenticationStatus' checks
-        const ready = mounted && authenticationStatus !== "loading";
-        const connected =
-          ready &&
-          account &&
-          chain &&
-          (!authenticationStatus || authenticationStatus === "authenticated");
-
-        if (!connected) {
-          return (
-            <>
-              {networkOption && (
-                <div onClick={() => setSwitchingNetwork(true)} className="navbar__network">
-                  <img className="logo" src={chainConfig[appChainId].logo} alt="Network Icon" />
-                  <img
-                    style={{ width: "25px" }}
-                    className="dropdown"
-                    src={dropdownSvg}
-                    alt="Dropdown Icon"
-                  />
-                </div>
-              )}
-              <button className={className} onClick={openConnectModal} type="button">
-                Connect Wallet
-              </button>
-            </>
-          );
-        }
-
-        if (chain.unsupported) {
-          return (
-            <>
-              {networkOption && (
-                <div onClick={openChainModal} className="navbar__network">
-                  <img
-                    className="logo"
-                    src={
-                      (chain.hasIcon && chain.iconUrl) ||
-                      chainConfig[chain.id]?.logo ||
-                      chainConfig[appChainId].logo
-                    }
-                    alt="Network Icon"
-                  />
-                  <img
-                    style={{ width: "25px" }}
-                    className="dropdown"
-                    src={dropdownSvg}
-                    alt="Dropdown Icon"
-                  />
-                </div>
-              )}
-              <button className={className} onClick={openChainModal} type="button">
-                Wrong network
-              </button>
-            </>
-          );
-        }
-
-        return (
-          <>
-            {networkOption && (
-              <div onClick={openChainModal} className="navbar__network">
-                <img
-                  className="logo"
-                  src={
-                    (chain.hasIcon && chain.iconUrl) ||
-                    chainConfig[chain.id]?.logo ||
-                    chainConfig[appChainId].logo
-                  }
-                  alt="Network Icon"
-                />
-                <img
-                  style={{ width: "25px" }}
-                  className="dropdown"
-                  src={dropdownSvg}
-                  alt="Dropdown Icon"
-                />
-              </div>
-            )}
-            <button className={className} onClick={openAccountModal} type="button">
-              {account.displayName}
-            </button>
-          </>
-        );
+    <ConnectButton
+      connectModal={{ size: "wide", showThirdwebBranding: false }}
+      connectButton={{
+        label: "Connect",
+        className: "",
+        style: {
+          borderRadius: "10px",
+        },
       }}
-    </ConnectButton.Custom>
+      client={thirdWebClient}
+      supportedTokens={getSupportedTokens()}
+      accountAbstraction={{
+        chain: arbitrumSepolia,
+        sponsorGas: true,
+        factoryAddress: "0x3320d9018ae22D3E7d6c3b812b26366080E086FD",
+      }}
+    />
   );
 };
 

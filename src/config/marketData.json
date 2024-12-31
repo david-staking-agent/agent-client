@@ -1,0 +1,79 @@
+{
+  "yieldBearingTokens": [
+    {
+      "protocol": "Kelp",
+      "type": "ERC20",
+      "address": "0xe7903B1F75C534Dd8159b313d92cDCfbC62cB3Cd",
+      "name": "rsETHWrapper",
+      "symbol": "wrsETH",
+      "decimals": "18",
+      "holders": "7076",
+      "apy": "3.10%",
+      "priceUsd": "3440.89",
+      "tvlUsd": "1585218.17",
+      "icon": "https://storage.googleapis.com/prod-pendle-bucket-a/images/uploads/e0976e38-d4d9-4f81-a2bb-68b7a7d10f54.svg"
+    },
+    {
+      "protocol": "Ether.fi",
+      "type": "ERC20",
+      "address": "0x028227c4dd1e5419d11Bb6fa6e661920c519D4F5",
+      "name": "Wrapped eETH",
+      "symbol": "weETH",
+      "decimals": "18",
+      "holders": "2916",
+      "apy": "3.96%",
+      "priceUsd": "3525.97",
+      "tvlUsd": "168166.58",
+      "icon": "https://storage.googleapis.com/prod-pendle-bucket-a/images/uploads/7bbd6cc1-22e7-4077-a532-6ff7e7a08464.svg"
+    },
+    {
+      "type": "ERC20",
+      "address": "0x2416092f143378750bb29b79eD961ab195CcEea5",
+      "name": "Renzo Restaked ETH",
+      "symbol": "ezETH",
+      "decimals": "18",
+      "holders": "21448",
+      "priceUsd": "3450.71",
+      "tvlUsd": "6779638.33"
+    },
+    {
+      "protocol": "Ethena",
+      "type": "ERC20",
+      "address": "0x211Cc4DD073734dA055fbF44a2b4667d5E5fE5d2",
+      "name": "Staked USDe",
+      "symbol": "sUSDe",
+      "decimals": "18",
+      "holders": "82",
+      "apy": "11.18%",
+      "priceUsd": "1.26",
+      "tvlUsd": "84581.20",
+      "icon": "https://storage.googleapis.com/prod-pendle-bucket-a/images/uploads/38be325c-d20f-4322-ace3-5b0ef5bb96fa.svg"
+    }
+  ],
+  "baseTokens": [
+    {
+      "type": "NATIVE",
+      "address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "name": "Ether",
+      "symbol": "ETH",
+      "decimals": 18,
+      "priceUsd": 0
+    },
+    {
+      "type": "ERC20",
+      "address": "0xd988097fb8612cc24eec14542bc03424c656005f",
+      "name": "USD Coin",
+      "symbol": "USDC",
+      "decimals": 6,
+      "priceUsd": 1
+    },
+    {
+      "type": "ERC20",
+      "address": "0xf0f161fda2712db8b566946122a5af183995e2ed",
+      "name": "Tether USD",
+      "symbol": "USDT",
+      "decimals": 6,
+      "priceUsd": 0.9997
+    }
+  ]
+}

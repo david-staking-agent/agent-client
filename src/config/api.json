@@ -1,3 +1,4 @@
 {
-  "apiUrl": "https://agent.spiralstake.xyz"
+  "websiteUrl": "https://2b6a-2406-7400-75-7175-6535-ac0e-800-caa2.ngrok-free.app",
+  "apiUrl": "http://localhost:5001"
 }
