@@ -1,6 +1,6 @@
 import { createThirdwebClient, defineChain } from "thirdweb";
 
-export const mode = defineChain({
+export const chain = defineChain({
   id: 34443,
   name: "Mode Mainnet",
   nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
@@ -13,6 +13,8 @@ export const mode = defineChain({
   ],
 });
 
-export const thirdWebClient = createThirdwebClient({
+export const factoryAddress = "0x49476bC3271dfb93A6Bcb4F2403B5b568fAd969d";
+
+export const client = createThirdwebClient({
   clientId: "8e590d8043e92068542e513fa8932779",
 });

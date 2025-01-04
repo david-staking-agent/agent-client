@@ -11,8 +11,7 @@ import {
   sendTransaction,
   waitForReceipt,
 } from "thirdweb";
-import { arbitrumSepolia } from "thirdweb/chains";
-import { thirdWebClient } from "../config/thirdweb";
+import { chain, client } from "../config/thirdweb";
 import { getSupportedContracts, getSupportedTokens } from "../config/supported";
 
 const Connect = ({ setNavbarVisible }) => {
@@ -26,9 +25,9 @@ const Connect = ({ setNavbarVisible }) => {
   //   isLoading,
   //   isError,
   // } = useWalletBalance({
-  //   chain: arbitrumSepolia,
+  //   chain,
   //   address: smartAccount?.address,
-  //   client: thirdWebClient,
+  //   client: client,
   // });
 
   useEffect(() => {
@@ -54,8 +53,8 @@ const Connect = ({ setNavbarVisible }) => {
     try {
       const contract = getContract({
         address: smartAccount.address,
-        chain: arbitrumSepolia,
-        client: thirdWebClient,
+        chain,
+        client,
       });
 
       const signersList = await readContract({
@@ -72,20 +71,20 @@ const Connect = ({ setNavbarVisible }) => {
   const authorize = async () => {
     try {
       const contract = getContract({
+        chain,
+        client,
         address: smartAccount.address,
-        chain: arbitrumSepolia,
-        client: thirdWebClient,
       });
 
       const transaction = addSessionKey({
         contract,
         account: smartAccount,
-        sessionKeyAddress: "0xa38f9740e716405542d90fef1479eBe8815314E3",
+        sessionKeyAddress: "0xa38f9740e716405542d90fef1479eBe8815314E3", // Needs to change in production
         permissions: {
           approvedTargets: getSupportedContracts(),
-          nativeTokenLimitPerTransaction: 10,
+          nativeTokenLimitPerTransaction: 1, // Needs to change in prodcution
           permissionStartTimestamp: new Date(),
-          permissionEndTimestamp: new Date(Date.now() + 24 * 60 * 60 * 1000),
+          permissionEndTimestamp: new Date(Date.now() + 1 * 60 * 60 * 1000),
         },
       });
 
@@ -124,11 +123,11 @@ const Connect = ({ setNavbarVisible }) => {
   // if (!walletBalance?.value && !isLoading && !isError) {
   //   return (
   //     <PayEmbed
-  //       client={thirdWebClient}
+  //       client={client}
   //       payOptions={{
   //         mode: "fund_wallet",
   //         metadata: { name: "Deposit funds" },
-  //         prefillBuy: { chain: arbitrumSepolia, amount: "0.01" },
+  //         prefillBuy: { chain, amount: "0.01" },
   //       }}
   //       supportedTokens={getSupportedTokens()}
   //     />
