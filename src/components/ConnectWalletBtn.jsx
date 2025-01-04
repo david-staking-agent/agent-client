@@ -19,7 +19,7 @@ const ConnectWalletBtn = () => {
       accountAbstraction={{
         chain: chain,
         sponsorGas: true,
-        factoryAddress: "0x3320d9018ae22D3E7d6c3b812b26366080E086FD",
+        factoryAddress,
       }}
     />
   );

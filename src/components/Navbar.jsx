@@ -11,8 +11,8 @@ const Navbar = ({ setSwitchingNetwork }) => {
     <nav className="navbar">
       <Link to="/pools">
         <div className="logo">
-          <img className="logo__img" src={"/logo/spiral-stake-logo.jpg"} alt="" />
-          <span className="logo__text">DAVID</span>
+          <img className="logo__img" src={"/logo/0xdavid.png"} alt="" />
+          <span className="bold">0xDavid</span>
         </div>
       </Link>
 

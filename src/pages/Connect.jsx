@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { updateUserWallet } from "../api/user";
-import { PayEmbed, useActiveAccount, useSendTransaction, useWalletBalance } from "thirdweb/react";
+import {
+  PayEmbed,
+  useActiveAccount,
+  useActiveWallet,
+  useSendTransaction,
+  useWalletBalance,
+} from "thirdweb/react";
 import ConnectWalletBtn from "../components/ConnectWalletBtn";
 import { addSessionKey } from "thirdweb/extensions/erc4337";
 import {
@@ -13,33 +19,37 @@ import {
 } from "thirdweb";
 import { chain, client } from "../config/thirdweb";
 import { getSupportedContracts, getSupportedTokens } from "../config/supported";
+import { ClipLoader } from "react-spinners";
 
 const Connect = ({ setNavbarVisible }) => {
   const [authorized, setAuthorized] = useState(false);
+  const [authorizing, setAuthorizing] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const { username, chatId } = useParams();
   const smartAccount = useActiveAccount(); // This is for smart account
 
-  // const {
-  //   data: walletBalance,
-  //   isLoading,
-  //   isError,
-  // } = useWalletBalance({
-  //   chain,
-  //   address: smartAccount?.address,
-  //   client: client,
-  // });
+  const {
+    data: walletBalance,
+    isLoading,
+    isError,
+  } = useWalletBalance({
+    chain,
+    address: smartAccount?.address,
+    client: client,
+  });
 
   useEffect(() => {
-    if (!smartAccount) return;
+    console.log(smartAccount);
+    if (!smartAccount) return setLoading(false);
 
     checkAuthorized();
   }, [smartAccount]);
 
   useEffect(() => {
-    if (!authorized || !username) return;
+    if (!authorized || !username || !smartAccount) return;
     updateUserWallet(username, chatId, smartAccount.address);
-  }, [authorized]);
+  }, [authorized, smartAccount]);
 
   useEffect(() => {
     if (smartAccount) {
@@ -50,6 +60,8 @@ const Connect = ({ setNavbarVisible }) => {
   }, [smartAccount]);
 
   const checkAuthorized = async () => {
+    setLoading(true);
+
     try {
       const contract = getContract({
         address: smartAccount.address,
@@ -66,9 +78,13 @@ const Connect = ({ setNavbarVisible }) => {
     } catch (error) {
       setAuthorized(false);
     }
+
+    setLoading(false);
   };
 
   const authorize = async () => {
+    setAuthorizing(true);
+
     try {
       const contract = getContract({
         chain,
@@ -84,7 +100,7 @@ const Connect = ({ setNavbarVisible }) => {
           approvedTargets: getSupportedContracts(),
           nativeTokenLimitPerTransaction: 1, // Needs to change in prodcution
           permissionStartTimestamp: new Date(),
-          permissionEndTimestamp: new Date(Date.now() + 1 * 60 * 60 * 1000),
+          permissionEndTimestamp: new Date(Date.now() + 2 * 60 * 1000),
         },
       });
 
@@ -93,52 +109,52 @@ const Connect = ({ setNavbarVisible }) => {
       setAuthorized(true);
     } catch (error) {
       console.log(error);
+    } finally {
+      setAuthorizing(false);
     }
   };
 
-  if (!smartAccount) {
-    return (
-      <>
-        <h1 className="page-heading">Hello, David here 👋</h1>
-        <p style={{ textAlign: "center" }}>Connect your wallet to get the best suggestions.</p>
-        <ConnectWalletBtn />
-      </>
-    );
-  }
-
-  if (!authorized) {
-    return (
-      <>
-        <h1 className="page-heading">Authorize David</h1>
-        <p style={{ textAlign: "center" }}>
-          To manage your smart account, only with trusted protocols
-        </p>
-        <button onClick={authorize} className="btn btn--connect">
-          Authorize
-        </button>
-      </>
-    );
-  }
-
-  // if (!walletBalance?.value && !isLoading && !isError) {
-  //   return (
-  //     <PayEmbed
-  //       client={client}
-  //       payOptions={{
-  //         mode: "fund_wallet",
-  //         metadata: { name: "Deposit funds" },
-  //         prefillBuy: { chain, amount: "0.01" },
-  //       }}
-  //       supportedTokens={getSupportedTokens()}
-  //     />
-  //   );
-  // }
-
-  return (
-    <div>
+  return loading ? (
+    <ClipLoader color="var(--color-primary)" size="30px" />
+  ) : !smartAccount ? (
+    <>
+      <h1 className="page-heading">Hello, David here 👋</h1>
+      <p style={{ textAlign: "center" }}>Connect your wallet to get the best suggestions.</p>
+      <ConnectWalletBtn />
+    </>
+  ) : !authorized ? (
+    <>
+      <h1 className="page-heading">Authorize David</h1>
+      <p style={{ textAlign: "center" }}>
+        To manage your smart account, only with trusted protocols
+      </p>
+      <button onClick={authorize} className="btn btn--connect" disabled={authorizing}>
+        {!authorizing ? (
+          "Authorize"
+        ) : (
+          <>
+            <span style={{ marginRight: "10px" }}>Authorizing</span>
+            <ClipLoader color="var(--color-primary)" size="20px" />
+          </>
+        )}
+      </button>
+    </>
+  ) : (
+    <>
       <h1 className="page-heading">You're all set!</h1>
-      <p style={{ textAlign: "center" }}>Please close this window and continue on Telegram chat.</p>
-    </div>
+      <p style={{ textAlign: "center" }}>
+        Add funds to your smart account and continue the chat on Telegram
+      </p>
+      <PayEmbed
+        client={client}
+        payOptions={{
+          mode: "fund_wallet",
+          metadata: { name: "Deposit funds" },
+          prefillBuy: { chain, amount: "0.01" },
+        }}
+        supportedTokens={getSupportedTokens()}
+      />
+    </>
   );
 };
 
