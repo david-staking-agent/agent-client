@@ -1,5 +1,4 @@
 import data from "./marketData.json";
-import { websiteUrl } from "./api.json";
 import { chain } from "./thirdweb";
 
 export const getSupportedTokens = () => {

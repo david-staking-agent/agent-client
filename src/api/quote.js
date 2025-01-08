@@ -1,7 +1,6 @@
 import http from "./http";
-import config from "../config/api.json";
 
-const apiEndpoint = `${config.apiUrl}/quote`;
+const apiEndpoint = `${import.meta.env.VITE_API_URL}/quote`;
 
 export const getQuote = async (chainId, sellToken, buyToken, amountSell, taker) => {
   return (

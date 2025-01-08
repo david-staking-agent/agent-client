@@ -1,7 +1,6 @@
 import http from "./http";
-import config from "../config/api.json";
 
-const apiEndpoint = `${config.apiUrl}/user`;
+const apiEndpoint = `${import.meta.env.VITE_API_URL}/user`;
 
 export const getRecommendedTrades = async (username) => {
   return (await http.get(`${apiEndpoint}/${username}/trades/recommended`)).data;
