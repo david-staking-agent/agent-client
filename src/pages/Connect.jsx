@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { updateUserWallet } from "../api/user";
-import {
-  PayEmbed,
-  useActiveAccount,
-  useActiveWallet,
-  useSendTransaction,
-  useWalletBalance,
-} from "thirdweb/react";
+import { PayEmbed, useActiveAccount, useWalletBalance } from "thirdweb/react";
 import ConnectWalletBtn from "../components/ConnectWalletBtn";
 import { addSessionKey } from "thirdweb/extensions/erc4337";
 import {
@@ -29,15 +23,7 @@ const Connect = ({ setNavbarVisible }) => {
   const { username, chatId } = useParams();
   const smartAccount = useActiveAccount(); // This is for smart account
 
-  const {
-    data: walletBalance,
-    isLoading,
-    isError,
-  } = useWalletBalance({
-    chain,
-    address: smartAccount?.address,
-    client: client,
-  });
+  const selectProtocols = ["Ether Fi", "Renzo", "Kelp Dao", "Ethena"];
 
   useEffect(() => {
     console.log(smartAccount);
@@ -100,7 +86,7 @@ const Connect = ({ setNavbarVisible }) => {
           approvedTargets: getSupportedContracts(),
           nativeTokenLimitPerTransaction: 1, // Needs to change in prodcution
           permissionStartTimestamp: new Date(),
-          permissionEndTimestamp: new Date(Date.now() + 2 * 60 * 1000),
+          permissionEndTimestamp: new Date(Date.now() + 24 * 60 * 60 * 1000), // Needs to change in production
         },
       });
 
@@ -125,9 +111,27 @@ const Connect = ({ setNavbarVisible }) => {
   ) : !authorized ? (
     <>
       <h1 className="page-heading">Authorize David</h1>
-      <p style={{ textAlign: "center" }}>
-        To manage your smart account, only with trusted protocols
+      <p className="text--secondary text-center">
+        To manage your smart account, only with select protocols
       </p>
+      <ul style={{ marginBottom: "20px", paddingLeft: "20px", listStyleType: "none" }}>
+        {selectProtocols.map((name, index) => (
+          <li
+            key={index}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "8px",
+              fontSize: "1rem",
+            }}
+            className="text--secondary"
+          >
+            <span style={{ color: "green", marginRight: "12px", fontSize: "1.5rem" }}>✔</span>
+            {name}
+          </li>
+        ))}
+      </ul>
+
       <button onClick={authorize} className="btn btn--connect" disabled={authorizing}>
         {!authorizing ? (
           "Authorize"
