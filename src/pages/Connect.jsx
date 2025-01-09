@@ -86,7 +86,7 @@ const Connect = ({ setNavbarVisible }) => {
           approvedTargets: getSupportedContracts(),
           nativeTokenLimitPerTransaction: 1, // Needs to change in prodcution
           permissionStartTimestamp: new Date(),
-          permissionEndTimestamp: new Date(Date.now() + 24 * 60 * 60 * 1000), // Needs to change in production
+          permissionEndTimestamp: new Date(Date.now() + 1 * 60 * 60 * 1000), // Needs to change in production
         },
       });
 
