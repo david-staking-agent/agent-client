@@ -1,15 +1,14 @@
-import data from "./marketData.json";
+import tokenData from "../config/tokenData.json";
 import { chain } from "./thirdweb";
 
 export const getSupportedTokens = () => {
   const supportedTokens = {};
   supportedTokens[chain.id] = [];
 
-  [...data.yieldBearingTokens, ...data.baseTokens].forEach((token) => {
-    if (token.type === "ERC20") {
-      token.icon =
-        "https://storage.googleapis.com/prod-pendle-bucket-a/images/uploads/fd17377a-34f5-4c3a-873e-2586898880b2.svg";
+  Object.values(tokenData).forEach((token) => {
+    if (token.symbol === "STONE") return; // Needs to change temporary
 
+    if (token.type === "ERC20") {
       supportedTokens[chain.id].push(token);
     }
   });
@@ -24,14 +23,20 @@ export const getSupportedContracts = () => {
 
   const supportedContracts = [OPEN_OCEAN_ROUTER, ZEROX_API_ROUTER, RUBIC_API_ROUTER];
 
-  [...data.yieldBearingTokens, ...data.baseTokens].forEach((token) => {
+  Object.values(tokenData).forEach((token) => {
     if (token.type === "ERC20") {
-      token.icon =
-        "https://storage.googleapis.com/prod-pendle-bucket-a/images/uploads/fd17377a-34f5-4c3a-873e-2586898880b2.svg";
-
       supportedContracts.push(token.address);
+      if (token.depositAddress) supportedContracts.push(token.depositAddress);
     }
   });
 
   return supportedContracts;
+};
+
+export const getSupportedProtocols = () => {
+  return Object.values(tokenData)
+    .filter((token) => token.protocol)
+    .map((token) => {
+      return { name: token.protocol, tokenSymbol: token.symbol, tokenIcon: token.icon };
+    });
 };

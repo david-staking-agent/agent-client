@@ -208,6 +208,15 @@ select {
   }
 }
 
+.icon {
+  width: 40px;
+  margin: 5px 10px;
+}
+
+.icon--round {
+  border-radius: 50%;
+}
+
 /*//////////////////////
 // Buttons
 //////////////////////*/
@@ -249,7 +258,6 @@ button {
   font-size: 18px;
   border: 1px solid var(--color-border);
   border-radius: 5px;
-  height: 45px;
   transition: transform 0.3s ease;
 }
 
@@ -275,6 +283,5 @@ button {
 @media screen and (max-width: 700px) {
   .btn--connect {
     padding: 8px 16px;
-    width: 50%;
   }
 }

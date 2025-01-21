@@ -1,7 +1,9 @@
 import { ConnectButton, useDisconnect, useSiweAuth } from "thirdweb/react";
 import { chain, client, factoryAddress } from "../config/thirdweb";
-
 import { getSupportedTokens } from "../config/supported";
+import { createWallet } from "thirdweb/wallets";
+
+const wallets = [createWallet("walletConnect"), createWallet("io.metamask")];
 
 const ConnectWalletBtn = () => {
   return (
@@ -14,6 +16,7 @@ const ConnectWalletBtn = () => {
           borderRadius: "10px",
         },
       }}
+      wallets={wallets}
       client={client}
       supportedTokens={getSupportedTokens()}
       accountAbstraction={{

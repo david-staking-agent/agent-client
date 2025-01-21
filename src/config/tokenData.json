@@ -1,0 +1,86 @@
+{
+  "0xe7903B1F75C534Dd8159b313d92cDCfbC62cB3Cd": {
+    "type": "ERC20",
+    "address": "0xe7903B1F75C534Dd8159b313d92cDCfbC62cB3Cd",
+    "name": "rsETHWrapper",
+    "symbol": "wrsETH",
+    "decimals": "18",
+    "icon": "https://storage.googleapis.com/prod-pendle-bucket-a/images/uploads/e0976e38-d4d9-4f81-a2bb-68b7a7d10f54.svg",
+    "protocol": "Kelp Dao",
+    "yieldBearingToken": true,
+    "depositAddress": "0xbDf612E616432AA8e8D7d8cC1A9c934025371c5C",
+    "priceUsd": "3309.78"
+  },
+  "0x04C0599Ae5A44757c0af6F9eC3b93da8976c150A": {
+    "type": "ERC20",
+    "address": "0x04C0599Ae5A44757c0af6F9eC3b93da8976c150A",
+    "name": "Wrapped eETH",
+    "symbol": "weETH.mode",
+    "decimals": "18",
+    "icon": "https://storage.googleapis.com/prod-pendle-bucket-a/images/uploads/7bbd6cc1-22e7-4077-a532-6ff7e7a08464.svg",
+    "protocol": "Ether.fi",
+    "yieldBearingToken": true,
+    "priceUsd": "3367.58"
+  },
+  "0x2416092f143378750bb29b79eD961ab195CcEea5": {
+    "type": "ERC20",
+    "address": "0x2416092f143378750bb29b79eD961ab195CcEea5",
+    "name": "Renzo Restaked ETH",
+    "symbol": "ezETH",
+    "decimals": "18",
+    "icon": "https://storage.googleapis.com/prod-pendle-bucket-a/images/uploads/8841026a-e881-48a3-a882-76f3104767a1.svg",
+    "protocol": "Renzo",
+    "yieldBearingToken": true,
+    "depositAddress": "0x4D7572040B84b41a6AA2efE4A93eFFF182388F88",
+    "priceUsd": "3292.67"
+  },
+  "0x211Cc4DD073734dA055fbF44a2b4667d5E5fE5d2": {
+    "type": "ERC20",
+    "address": "0x211Cc4DD073734dA055fbF44a2b4667d5E5fE5d2",
+    "name": "Staked USDe",
+    "symbol": "sUSDe",
+    "decimals": "18",
+    "icon": "https://storage.googleapis.com/prod-pendle-bucket-a/images/uploads/1fc3683f-3f25-44f0-8c79-55f7eedd53be.svg",
+    "protocol": "Ethena",
+    "yieldBearingToken": true,
+    "priceUsd": "1.14"
+  },
+  "0x80137510979822322193FC997d400D5A6C747bf7": {
+    "type": "ERC20",
+    "address": "0x80137510979822322193FC997d400D5A6C747bf7",
+    "name": "StakeStone Ether",
+    "symbol": "STONE",
+    "decimals": "18",
+    "icon": "https://stakestone.io/stone/favicon.ico",
+    "protocol": "Stake Stone",
+    "yieldBearingToken": true,
+    "priceUsd": ""
+  },
+  "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee": {
+    "type": "NATIVE",
+    "address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "name": "Ether",
+    "symbol": "ETH",
+    "decimals": 18,
+    "priceUsd": "3186.46",
+    "yieldBearingToken": false
+  },
+  "0xd988097fb8612cc24eec14542bc03424c656005f": {
+    "type": "ERC20",
+    "address": "0xd988097fb8612cc24eec14542bc03424c656005f",
+    "name": "USD Coin",
+    "symbol": "USDC",
+    "decimals": 6,
+    "priceUsd": "1.00",
+    "yieldBearingToken": false
+  },
+  "0xf0f161fda2712db8b566946122a5af183995e2ed": {
+    "type": "ERC20",
+    "address": "0xf0f161fda2712db8b566946122a5af183995e2ed",
+    "name": "Tether USD",
+    "symbol": "USDT",
+    "decimals": 6,
+    "priceUsd": "1.00",
+    "yieldBearingToken": false
+  }
+}

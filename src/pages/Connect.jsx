@@ -12,8 +12,13 @@ import {
   waitForReceipt,
 } from "thirdweb";
 import { chain, client } from "../config/thirdweb";
-import { getSupportedContracts, getSupportedTokens } from "../config/supported";
+import {
+  getSupportedContracts,
+  getSupportedProtocols,
+  getSupportedTokens,
+} from "../config/supported";
 import { ClipLoader } from "react-spinners";
+import { Copy } from "../components/copy";
 
 const Connect = ({ setNavbarVisible }) => {
   const [authorized, setAuthorized] = useState(false);
@@ -21,9 +26,7 @@ const Connect = ({ setNavbarVisible }) => {
   const [loading, setLoading] = useState(true);
 
   const { username, chatId } = useParams();
-  const smartAccount = useActiveAccount(); // This is for smart account
-
-  const selectProtocols = ["Ether Fi", "Renzo", "Kelp Dao", "Ethena"];
+  const smartAccount = useActiveAccount();
 
   useEffect(() => {
     console.log(smartAccount);
@@ -81,16 +84,17 @@ const Connect = ({ setNavbarVisible }) => {
       const transaction = addSessionKey({
         contract,
         account: smartAccount,
-        sessionKeyAddress: "0xa38f9740e716405542d90fef1479eBe8815314E3", // Needs to change in production
+        sessionKeyAddress: "0x8Aa9c2f97c279147a3B8fF7df105Ab3C906Ab8aD", // Production
         permissions: {
           approvedTargets: getSupportedContracts(),
-          nativeTokenLimitPerTransaction: 1, // Needs to change in prodcution
+          nativeTokenLimitPerTransaction: 5, // Might need to change in future
           permissionStartTimestamp: new Date(),
           permissionEndTimestamp: new Date(Date.now() + 1 * 60 * 60 * 1000), // Needs to change in production
         },
       });
 
       const tx = await sendTransaction({ account: smartAccount, transaction });
+
       await waitForReceipt(tx);
       setAuthorized(true);
     } catch (error) {
@@ -112,10 +116,11 @@ const Connect = ({ setNavbarVisible }) => {
     <>
       <h1 className="page-heading">Authorize David</h1>
       <p className="text--secondary text-center">
-        To manage your smart account, only with select protocols
+        To manage your smart account, <br />
+        only with select protocols
       </p>
       <ul style={{ marginBottom: "20px", paddingLeft: "20px", listStyleType: "none" }}>
-        {selectProtocols.map((name, index) => (
+        {getSupportedProtocols().map((protocol, index) => (
           <li
             key={index}
             style={{
@@ -126,8 +131,9 @@ const Connect = ({ setNavbarVisible }) => {
             }}
             className="text--secondary"
           >
-            <span style={{ color: "green", marginRight: "12px", fontSize: "1.5rem" }}>✔</span>
-            {name}
+            <img className="icon icon--round" src={protocol.tokenIcon} alt="" />
+
+            {protocol.name}
           </li>
         ))}
       </ul>
@@ -137,7 +143,7 @@ const Connect = ({ setNavbarVisible }) => {
           "Authorize"
         ) : (
           <>
-            <span style={{ marginRight: "10px" }}>Authorizing</span>
+            <span style={{ marginRight: "10px" }}>Awaiting Sign 1/2</span>
             <ClipLoader color="var(--color-primary)" size="20px" />
           </>
         )}
@@ -147,19 +153,28 @@ const Connect = ({ setNavbarVisible }) => {
     <>
       <h1 className="page-heading">You're all set!</h1>
       <p style={{ textAlign: "center" }}>
-        Add funds to your smart account and continue the chat on Telegram
+        Add funds to your smart account address and continue the chat on Telegram
       </p>
-      <PayEmbed
-        client={client}
-        payOptions={{
-          mode: "fund_wallet",
-          metadata: { name: "Deposit funds" },
-          prefillBuy: { chain, amount: "0.01" },
-        }}
-        supportedTokens={getSupportedTokens()}
-      />
+      <p style={{ fontSize: "16px" }} className="text-center btn btn--connect">
+        Your Address:
+        <Copy text={smartAccount.address} />
+      </p>
     </>
   );
 };
+
+// Removed temporary was getting error - Needs to change
+
+{
+  /* <PayEmbed
+client={client}
+payOptions={{
+  mode: "fund_wallet",
+  metadata: { name: "Deposit funds" },
+  prefillBuy: { chain, amount: "0.01" },
+}}
+supportedTokens={getSupportedTokens()}
+/> */
+}
 
 export default Connect;
