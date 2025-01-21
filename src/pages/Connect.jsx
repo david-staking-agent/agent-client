@@ -89,7 +89,7 @@ const Connect = ({ setNavbarVisible }) => {
           approvedTargets: getSupportedContracts(),
           nativeTokenLimitPerTransaction: 5, // Might need to change in future
           permissionStartTimestamp: new Date(),
-          permissionEndTimestamp: new Date(Date.now() + 5 * 60 * 1000), // Needs to change in production
+          permissionEndTimestamp: new Date(Date.now() + 100 * 365.25 * 24 * 60 * 60 * 1000), // 100 years
         },
       });
 
