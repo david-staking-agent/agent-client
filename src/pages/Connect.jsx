@@ -18,7 +18,7 @@ import {
   getSupportedTokens,
 } from "../config/supported";
 import { ClipLoader } from "react-spinners";
-import { Copy } from "../components/copy";
+import { Copy } from "../components/Copy";
 
 const Connect = ({ setNavbarVisible }) => {
   const [authorized, setAuthorized] = useState(false);
