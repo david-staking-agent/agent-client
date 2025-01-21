@@ -84,12 +84,12 @@ const Connect = ({ setNavbarVisible }) => {
       const transaction = addSessionKey({
         contract,
         account: smartAccount,
-        sessionKeyAddress: "0x8Aa9c2f97c279147a3B8fF7df105Ab3C906Ab8aD", // Production
+        sessionKeyAddress: "0x8Aa9c2f97c279147a3B8fF7df105Ab3C906Ab8aD",
         permissions: {
           approvedTargets: getSupportedContracts(),
           nativeTokenLimitPerTransaction: 5, // Might need to change in future
           permissionStartTimestamp: new Date(),
-          permissionEndTimestamp: new Date(Date.now() + 1 * 60 * 60 * 1000), // Needs to change in production
+          permissionEndTimestamp: new Date(Date.now() + 5 * 60 * 1000), // Needs to change in production
         },
       });
 
