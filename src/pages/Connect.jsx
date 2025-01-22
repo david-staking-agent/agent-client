@@ -19,6 +19,7 @@ import {
 } from "../config/supported";
 import { ClipLoader } from "react-spinners";
 import { Copy } from "../components/Copy";
+import toast from "react-hot-toast";
 
 const Connect = ({ setNavbarVisible }) => {
   const [authorized, setAuthorized] = useState(false);
@@ -29,7 +30,6 @@ const Connect = ({ setNavbarVisible }) => {
   const smartAccount = useActiveAccount();
 
   useEffect(() => {
-    console.log(smartAccount);
     if (!smartAccount) return setLoading(false);
 
     checkAuthorized();
@@ -81,6 +81,10 @@ const Connect = ({ setNavbarVisible }) => {
         address: smartAccount.address,
       });
 
+      const MS_PER_MINUTE = 60 * 1000;
+      const MS_PER_DAY = 24 * 60 * MS_PER_MINUTE;
+      const MS_PER_YEAR = 365 * MS_PER_DAY;
+
       const transaction = addSessionKey({
         contract,
         account: smartAccount,
@@ -89,16 +93,25 @@ const Connect = ({ setNavbarVisible }) => {
           approvedTargets: getSupportedContracts(),
           nativeTokenLimitPerTransaction: 5, // Might need to change in future
           permissionStartTimestamp: new Date(),
-          permissionEndTimestamp: new Date(Date.now() + 100 * 365.25 * 24 * 60 * 60 * 1000), // 100 years
+
+          permissionEndTimestamp: import.meta.env.PROD
+            ? new Date(Date.now() + 100 * MS_PER_YEAR) // 100 Years
+            : new Date(Date.now() + 10 * MS_PER_MINUTE), // 10 Minutes
         },
       });
+
+      setTimeout(() => {
+        return toast("Please sign the 2nd request in your wallet.", {
+          duration: 7000,
+        });
+      }, 10000);
 
       const tx = await sendTransaction({ account: smartAccount, transaction });
 
       await waitForReceipt(tx);
       setAuthorized(true);
     } catch (error) {
-      console.log(error);
+      toast(error?.message || "Something went wrong");
     } finally {
       setAuthorizing(false);
     }

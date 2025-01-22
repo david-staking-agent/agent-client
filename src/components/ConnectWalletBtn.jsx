@@ -3,7 +3,7 @@ import { chain, client, factoryAddress } from "../config/thirdweb";
 import { getSupportedTokens } from "../config/supported";
 import { createWallet } from "thirdweb/wallets";
 
-const wallets = [createWallet("walletConnect"), createWallet("io.metamask")];
+const wallets = [createWallet("walletConnect"), createWallet("com.thirdweb")];
 
 const ConnectWalletBtn = () => {
   return (
@@ -18,6 +18,7 @@ const ConnectWalletBtn = () => {
       }}
       wallets={wallets}
       client={client}
+      recommendedWallets={[wallets[0]]}
       supportedTokens={getSupportedTokens()}
       accountAbstraction={{
         chain: chain,
