@@ -5,6 +5,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import { Route, Routes } from "react-router-dom";
 import "./styles/App.css";
 import { Toaster } from "react-hot-toast";
+import { Analytics } from "@vercel/analytics/react";
 
 const App = () => {
   const [navbarVisible, setNavbarVisible] = useState(true);
@@ -12,6 +13,7 @@ const App = () => {
   return (
     <div className="app">
       {navbarVisible && <Navbar />}
+      <Analytics />
       <Toaster />
       <div className="main">
         <Routes>
